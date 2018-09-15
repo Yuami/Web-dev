@@ -1,3 +1,5 @@
+// ------------------- <HELPERS> -------------------
+
 function randomInt(mult) {
     return Math.floor(Math.random() * mult)
 }
@@ -7,7 +9,6 @@ function child(parent, child) {
 }
 
 function alert(title, s, alertType) {
-    console.log(s);
     let head = document.getElementById("alert-title");
     let content = document.getElementById("alert-message");
     head.textContent = title;
@@ -31,17 +32,26 @@ function alert(title, s, alertType) {
     e.style.display = "";
 }
 
+function undisplayAlert() {
+    let e = document.getElementById("alert");
+    e.style.display = "none";
+}
+
+// ------------------- </HELPERS> -------------------
+
+// ------------------- <GAME ID="UGLY"> -------------------
 
 class Game {
 
     static restart() {
+        undisplayAlert();
         this.set(this.rows, this.cols, this.numBombs)
     }
 
     static set(rows, cols, numBombs) {
         this.dirs = [
             [-1, -1], [+0, -1], [+1, -1],
-            [-1, +0],           [+1, -0],
+            [-1, +0], [+1, -0],
             [-1, +1], [+0, +1], [+1, +1]
         ];
         this.totalOpen = 0;
@@ -57,6 +67,14 @@ class Game {
         }
         this.generate();
         this.setupDisplay();
+        this.squareAll();
+    }
+
+    static squareAll() {
+        let cw = document.querySelectorAll(".box");
+        for (let i = 0; i < cw.length; i++) {
+            cw[i].style.height = cw[i].offsetWidth + "px";
+        }
     }
 
     static generate() {
@@ -67,7 +85,7 @@ class Game {
         }
     }
 
-    static bombsGeneration(){
+    static bombsGeneration() {
         let numBombs = this.numBombs;
         let rows = this.rows;
         let cols = this.cols;
@@ -75,7 +93,7 @@ class Game {
             let row = randomInt(rows);
             let col = randomInt(cols);
 
-            if (this.isMine(row,col) || this.isUsed(row,col)) continue;
+            if (this.isMine(row, col) || this.isUsed(row, col)) continue;
             this.getBox(row, col).isMine = true;
             numBombs--;
         }
@@ -106,16 +124,17 @@ class Game {
     }
 
     static open(x, y) {
-        if (this.finish){
+        undisplayAlert();
+
+        if (this.finish) {
             this.restart();
         }
 
         let dirs = this.dirs;
         let totalMines = 0;
-        let board = this.board;
 
         if (this.isUsed(x, y)) {
-            alert("Warning!","This box is already used!", "warn");
+            alert("Warning!", "This box is already used!", "warn");
             return;
         } else {
             this.getBox(x, y).isUsed = true;
@@ -144,19 +163,19 @@ class Game {
             }
         }
 
-        let element = document.getElementById("box-" + x + "-" + y);
-        let children = document.createElement("div");
-        children.classList.add("text");
-        children.innerText = "" + totalMines;
-        child(element, children);
+        this.displayElement(x, y, totalMines);
 
         this.totalOpen++;
-        if (this.win()) {
-
-        }
+        this.win();
         if (totalMines === 0) {
             this.openNear(x, y);
         }
+    }
+
+    static displayElement(x, y, totalMines) {
+        let element = Box.getBoxElement(x, y);
+        element.style.borderColor = "#f3bb00";
+        element.innerText = "" + totalMines;
     }
 
     static openNear(x, y) {
@@ -186,26 +205,64 @@ class Game {
     }
 
     static lost() {
-        this.openAllBombs();
-        alert("OOOH!","YOU FOUND A MINE!");
+        this.lostStyle();
+        alert("OOOH!", "YOU FOUND A MINE!");
         this.finish = true;
     }
 
     static win() {
         if (this.totalOpen !== this.rows * this.cols - this.numBombs) return;
-        alert("WINNER!","YOU WIN THE GAME!","win");
+        let borderColor = "#4ff43c";
+        this.styleBorders(borderColor);
+        alert("WINNER!", "YOU WIN THE GAME!", "win");
         this.finish = true;
     }
 
-    static openAllBombs(){
+    static lostStyle() {
+        let borderColor = "#7a201e";
         for (let i = 0; i < this.rows; i++) {
             for (let j = 0; j < this.cols; j++) {
-                if (this.isMine(i,j)){
-                    let element = Box.getBoxElement(i,j);
-                    console.log(element);
-                    element.innerHTML = "<img src='bomb.svg'/>";
+                if (this.isMine(i, j)) {
+                    let element = Box.getBoxElement(i, j);
+                    element.style.backgroundColor = "#b82f2b";
+                    element.style.borderColor = borderColor;
                 }
             }
         }
+
+        this.styleBorders(borderColor);
+    }
+
+    static styleBorders(borderColor){
+        let borderWidth = "5px";
+        let cols = this.cols;
+        let rows = this.rows;
+
+        let top = Box.getRow(cols, 0);
+        let bot = Box.getRow(cols, rows - 1);
+        let left = Box.getCol(rows, 0);
+        let right = Box.getCol(rows, cols - 1);
+
+        for (let i = 0; i < top.length; i++) {
+            top[i].style.borderTopColor = borderColor;
+            top[i].style.borderTopWidth = borderWidth;
+        }
+
+        for (let i = 0; i < bot.length; i++) {
+            bot[i].style.borderBottomColor = borderColor;
+            bot[i].style.borderBottomWidth = borderWidth;
+        }
+
+        for (let i = 0; i < left.length; i++) {
+            left[i].style.borderLeftColor = borderColor;
+            left[i].style.borderLeftWidth = borderWidth;
+        }
+
+        for (let i = 0; i < right.length; i++) {
+            right[i].style.borderRightColor = borderColor;
+            right[i].style.borderRightWidth = borderWidth;
+        }
     }
 }
+
+// ------------------- </GAME> -------------------
