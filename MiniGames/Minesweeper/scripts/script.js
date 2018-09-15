@@ -1,3 +1,5 @@
+window.onresize = squareAll;
+
 // ------------------- <HELPERS> -------------------
 
 function randomInt(mult) {
@@ -37,6 +39,13 @@ function undisplayAlert() {
     e.style.display = "none";
 }
 
+function squareAll() {
+    let cw = document.querySelectorAll(".box");
+    for (let i = 0; i < cw.length; i++) {
+        cw[i].style.height = cw[i].offsetWidth + "px";
+    }
+}
+
 // ------------------- </HELPERS> -------------------
 
 // ------------------- <GAME ID="UGLY"> -------------------
@@ -67,14 +76,7 @@ class Game {
         }
         this.generate();
         this.setupDisplay();
-        this.squareAll();
-    }
-
-    static squareAll() {
-        let cw = document.querySelectorAll(".box");
-        for (let i = 0; i < cw.length; i++) {
-            cw[i].style.height = cw[i].offsetWidth + "px";
-        }
+        squareAll();
     }
 
     static generate() {
@@ -266,3 +268,4 @@ class Game {
 }
 
 // ------------------- </GAME> -------------------
+Game.set(8,8,10);
