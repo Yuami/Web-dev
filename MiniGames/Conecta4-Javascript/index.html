@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>&#128515; Conecta 4</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+</head>
+<body>
+<header class="header">
+    <a href="index.html"><h1>&#128515; CONECTA 4 &#128515;</h1></a>
+</header>
+<main>
+    <div class="container"></div>
+</main>
+<aside class="extras">
+    <div id="turn-show"></div>
+    <div id="alert" style="display: none;">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <strong>Alerta!</strong> <span id="alert-message"></span>
+    </div>
+    <div class="filters">
+        <button onclick="Script.restart(Script.columnas, Script.filas, Script.turno)" class="restart">REINICIAR</button>
+    </div>
+</aside>
+<footer id="sticky">Created By <a href="http://www.jfornes.com" style="color: dodgerblue">JFornes</a></footer>
+
+<script src="script.js"></script>
+<script>Script.init(7,6)</script>
+</body>
+</html>

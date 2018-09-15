@@ -1,0 +1,148 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    background: #e6e6e6;
+    user-select: none;
+    font-family: 'Pacifico', cursive;
+}
+
+.container, .header h1 {
+    text-align: center;
+    margin: 0 auto;
+    width: 75%;
+}
+
+.header {
+    width: 100%;
+    background: dodgerblue;
+    color: white;
+    padding: 16px 0;
+}
+
+.container {
+    display: grid;
+    grid-auto-flow: column;
+    margin-top: 1em;
+    color: #9528ff;
+}
+
+.column {
+    background-color: dodgerblue;
+    padding: 1em;
+    cursor: pointer;
+    display: grid;
+    grid-auto-flow: row;
+}
+
+#alert {
+    font-size: 1.75em;
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+}
+
+.closebtn{
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+
+.column:hover  circle.free{
+    fill: #98b7ed;
+}
+
+circle.free {
+    fill: #fff;
+}
+
+a {
+    color: #ffffff;
+}
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+.extras {
+    margin: 0 auto;
+    width: 75%;
+    justify-content: center;
+    background-color: #8f8f8f;
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-areas: "turn . filters";
+}
+
+.restart {
+    float: right;
+    font-size: 2.25em;
+}
+
+#sticky {
+    margin-top: 1em;
+    width:100%;
+    height:44px;
+    padding-top:20px;
+    background:black;
+    color:white;
+    font-weight:bold;
+    font-size:24px;
+    text-align:center;
+    position:relative;
+    bottom:0;
+    left:0;
+    padding-bottom: 1em;
+}
+
+button {
+    font-family: 'Pacifico', cursive;
+    background-color: dodgerblue;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+#turn-show {
+    padding: 1em;
+    margin: 5px 0;
+    grid-area: turn;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.filters{
+    grid-area: filters;
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>&#128515; Minesweeper</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+</head>
+<body>
+<header class="header">
+    <a href="index.html"><h1>&#128515; Minesweeper &#128515;</h1></a>
+</header>
+<main>
+    <div id="minesweeper"></div>
+</main>
+<aside class="extras">
+    <div id="alert" style="display: none;">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <strong id="alert-title"></strong> <span id="alert-message"></span>
+    </div>
+    <div class="restart">
+        <button onclick="Game.restart()" class="restart">Restart</button>
+    </div>
+</aside>
+<svg width="100" height="100">
+    <rect fill="#84D3DB" stroke="#000" stroke-width="1.5" x="265" y="175" width="50" height="50" id="svg_1" stroke-dasharray="none" opacity="1"></rect>
+</svg>
+
+<footer id="sticky">Created By <a href="http://www.jfornes.com" style="color: dodgerblue" target="_blank">JFornes</a></footer>
+<script src="Box.js"></script>
+<script src="script.js"></script>
+<script>Game.set(8,8,1)</script>
+</body>
+</html>
