@@ -40,7 +40,7 @@ function alert(title, s, alertType) {
             e.style.backgroundColor = "#f3bb00";
             break;
         case "load":
-            head.innerHTML = "<img src='loading.svg' style='height: 3em;'>";
+            head.innerHTML = "<img src='loading.svg' style='height: 1.3em;'>";
             e.style.backgroundColor = "#105789";
             break;
         default:
@@ -57,10 +57,12 @@ function undisplayAlert() {
 
 function squareAll() {
     let main = document.querySelector("#minesweeper");
+    let header = document.querySelector(".header");
+    let long = Math.min(header.clientWidth, main.clientWidth);
 
     let rows = document.querySelectorAll(".row");
     for (let i = 0; i < rows.length; i++) {
-        rows[i].style.width = main.clientWidth + "px";
+        rows[i].style.width = long + "px";
     }
 
     let cw = document.querySelectorAll(".box");
@@ -101,7 +103,6 @@ class Game {
         this.generate();
         this.setupDisplay();
         squareAll();
-        undisplayAlert();
     }
 
     static generate() {

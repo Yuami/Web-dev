@@ -44,11 +44,14 @@ a:active {
     padding: 16px 0;
 }
 
-main {
+main, #minesweeper, .extras {
     width: 40%;
-    margin: 2em auto 0;
-    background-color: #414f96;
+    margin: .5em auto 0;
+}
+
+main {
     padding: 10px;
+    background-color: #414f96;
 }
 
 #sticky {
@@ -144,32 +147,76 @@ main {
     width: 0;
 }
 
+input[type=number] {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=button] {
+    width: 100%;
+    font-family: 'Pacifico', cursive;
+    background-color: dodgerblue;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #134889;
+}
+
+
 @media only screen and (max-width: 1200px) {
-    main {
+    main, #minesweeper, .extras {
         width: 60%;
     }
     #alert{
         font-size: 1.25em;
     }
+    #sticky, .header{
+        width: 100%;
+    }
 }
 
 @media only screen and (max-width: 800px) {
-    main {
+    main, #minesweeper, .extras {
         width: 70%;
     }
     #alert{
         font-size: 1.25em;
     }
+    #sticky, .header{
+        width: 100%;
+    }
 }
 
-@media only screen and (max-width: 600px) {
-    main {
+@media only screen and (max-width: 650px) {
+    main, #minesweeper, .extras {
         width: 90%;
         min-width: 400px;
-        padding: 1px;
+    }
+
+    main, #minesweeper {
+        padding: 5px;
+    }
+
+    #sticky, .header{
+        min-width: 400px;
+        width: 100%;
     }
 
     #alert{
         font-size: 1em;
+    }
+    input[type=number] {
+        width: 100%;
     }
 }

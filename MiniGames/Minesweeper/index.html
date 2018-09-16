@@ -10,27 +10,25 @@
 <header class="header">
     <a href="index.html"><h1>&#128515; Minesweeper &#128515;</h1></a>
 </header>
-<main>
-    <div id="minesweeper"></div>
-
-    <aside class="extras">
-        <div id="alert" style="display: none;">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-            <strong id="alert-title"></strong> <span id="alert-message"></span>
-        </div>
-    </aside>
-    <div>
-        <div id="numbombs"></div>
-
-        <form id="form1">
-            <label>Columns:</label> <input type="number" name="cols" value="8">
-            <label>Rows:</label> <input type="number" name="rows" value="8">
-            <label>Bombs:</label> <input type="number" name="bombs" value="10">
-            <input class="btn" type="button" value="Start" onclick="initGame()">
-        </form>
+<div id="minesweeper"></div>
+<aside class="extras">
+    <div id="alert" style="display: none;">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <strong id="alert-title"></strong> <span id="alert-message"></span>
     </div>
+</aside>
+<main>
+    <form id="form1">
+        <div id="numbombs"></div><br>
+        <label>Columns:</label> <input type="number" name="cols" max="32" min="8" value="8">
+        <label>Rows:</label> <input type="number" name="rows" max="16" min="8" value="8">
+        <label>Bombs:</label> <input type="number" name="bombs" min="10" value="10">
+        <input type="button" value="Start" onclick="initGame()">
+    </form>
 </main>
-<footer id="sticky">Created By <a href="http://www.jfornes.com" style="color: dodgerblue" target="_blank">JFornes</a></footer>
+
+<footer id="sticky">Created By <a href="http://www.jfornes.com" style="color: dodgerblue" target="_blank">JFornes</a>
+</footer>
 <script src="scripts/Box.js"></script>
 <script src="scripts/script.js"></script>
 </body>
