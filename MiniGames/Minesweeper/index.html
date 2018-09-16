@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOC   TYPE html>
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,14 +14,21 @@
     <div id="minesweeper"></div>
 
     <aside class="extras">
-        <div class="restart">
-            <button onclick="Game.restart()" class="restart">Restart</button>
-        </div>
         <div id="alert" style="display: none;">
             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
             <strong id="alert-title"></strong> <span id="alert-message"></span>
         </div>
     </aside>
+    <div>
+        <div id="numbombs"></div>
+
+        <form id="form1">
+            <label>Columns:</label> <input type="number" name="cols" value="8">
+            <label>Rows:</label> <input type="number" name="rows" value="8">
+            <label>Bombs:</label> <input type="number" name="bombs" value="10">
+            <input class="btn" type="button" value="Start" onclick="initGame()">
+        </form>
+    </div>
 </main>
 <footer id="sticky">Created By <a href="http://www.jfornes.com" style="color: dodgerblue" target="_blank">JFornes</a></footer>
 <script src="scripts/Box.js"></script>

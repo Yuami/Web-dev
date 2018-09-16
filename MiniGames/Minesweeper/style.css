@@ -8,6 +8,7 @@ body {
     background: #e6e6e6;
     user-select: none;
     font-family: 'Pacifico', cursive;
+    color: white;
 }
 
 a {
@@ -30,7 +31,7 @@ a:active {
     text-decoration: none;
 }
 
-.container, .header h1 {
+.header h1 {
     text-align: center;
     margin: 0 auto;
     width: 75%;
@@ -40,7 +41,6 @@ a:active {
 .header {
     width: 100%;
     background: dodgerblue;
-    color: white;
     padding: 16px 0;
 }
 
@@ -75,7 +75,7 @@ main {
 .row {
     display: grid;
     grid-auto-flow: column;
-    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+   grid-template-columns: repeat(auto-fit, minmax(10px, .5fr));
 }
 
 .box {
@@ -96,7 +96,6 @@ main {
 }
 
 #alert {
-    grid-area: alert;
     font-size: 1.3em;
     padding: 20px;
     background-color: #f44336;
@@ -107,16 +106,9 @@ main {
     margin: 5px auto;
     justify-content: center;
     background-color: #8f8f8f;
-    display: grid;
-    grid-template-columns: 1fr 5fr;
-    grid-template-areas: "filters alert";
 }
 
-.restart {
-    font-size: 1.3em;
-}
-
-button {
+.btn {
     font-family: 'Pacifico', cursive;
     background-color: dodgerblue;
     border: none;
@@ -129,7 +121,7 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.btn:hover {
     opacity: 0.8;
 }
 

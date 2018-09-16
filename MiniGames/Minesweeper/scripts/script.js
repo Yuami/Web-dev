@@ -1,3 +1,15 @@
+function initGame() {
+    alert("Loading","Loading your game please wait.", "load");
+    let form = document.getElementById("form1");
+    let cols = parseInt(form.elements[0].value);
+    let rows = parseInt(form.elements[1].value);
+    let bombs = parseInt(form.elements[2].value);
+
+    Game.set(rows, cols, bombs);
+
+    document.querySelector("#numbombs").textContent = "Number of bombs: " + bombs;
+}
+
 window.onresize = squareAll;
 
 // ------------------- <HELPERS> -------------------
@@ -27,6 +39,10 @@ function alert(title, s, alertType) {
         case "tie":
             e.style.backgroundColor = "#f3bb00";
             break;
+        case "load":
+            head.innerHTML = "<img src='loading.svg' style='height: 3em;'>";
+            e.style.backgroundColor = "#105789";
+            break;
         default:
             e.style.backgroundColor = "#f44336";
             break;
@@ -40,10 +56,19 @@ function undisplayAlert() {
 }
 
 function squareAll() {
+    let main = document.querySelector("#minesweeper");
+
+    let rows = document.querySelectorAll(".row");
+    for (let i = 0; i < rows.length; i++) {
+        rows[i].style.width = main.clientWidth + "px";
+    }
+
     let cw = document.querySelectorAll(".box");
     for (let i = 0; i < cw.length; i++) {
-        cw[i].style.height = cw[i].offsetWidth + "px";
+        cw[i].style.height = cw[0].clientWidth + "px";
+        cw[i].style.fontSize = (cw[0].clientWidth / 2) + "px";
     }
+    return cw[0].style.height;
 }
 
 // ------------------- </HELPERS> -------------------
@@ -51,11 +76,6 @@ function squareAll() {
 // ------------------- <GAME ID="UGLY"> -------------------
 
 class Game {
-
-    static restart() {
-        undisplayAlert();
-        this.set(this.rows, this.cols, this.numBombs)
-    }
 
     static set(rows, cols, numBombs) {
         this.dirs = [
@@ -66,21 +86,28 @@ class Game {
         this.totalOpen = 0;
         this.finish = false;
         this.firstTurn = true;
-        if (numBombs > rows * cols) return;
+        if (rows < 8 || cols < 8) {
+            alert("WHOOPS!", "Please add more rows or columns (min 8each)");
+            return;
+        } else if (numBombs >= rows * cols) {
+            alert("WHOOPS!", "You have to many bombs D:");
+            return;
+        }
+
         this.numBombs = numBombs;
         this.rows = rows;
         this.cols = cols;
-        this.board = new Array(rows);
-        for (let i = 0; i < this.board.length; i++) {
-            this.board[i] = new Array(cols);
-        }
+
         this.generate();
         this.setupDisplay();
         squareAll();
+        undisplayAlert();
     }
 
     static generate() {
+        this.board = new Array(this.rows);
         for (let i = 0; i < this.rows; i++) {
+            this.board[i] = new Array(this.cols);
             for (let j = 0; j < this.cols; j++) {
                 this.board[i][j] = new Box(i, j);
             }
@@ -129,7 +156,7 @@ class Game {
         undisplayAlert();
 
         if (this.finish) {
-            this.restart();
+            initGame();
         }
 
         let dirs = this.dirs;
@@ -178,6 +205,7 @@ class Game {
         let element = Box.getBoxElement(x, y);
         element.style.borderColor = "#f3bb00";
         element.innerText = "" + totalMines;
+        element.style.backgroundColor = "#00486a"
     }
 
     static openNear(x, y) {
@@ -235,7 +263,7 @@ class Game {
         this.styleBorders(borderColor);
     }
 
-    static styleBorders(borderColor){
+    static styleBorders(borderColor) {
         let borderWidth = "5px";
         let cols = this.cols;
         let rows = this.rows;
@@ -268,4 +296,4 @@ class Game {
 }
 
 // ------------------- </GAME> -------------------
-Game.set(8,8,10);
+initGame();
