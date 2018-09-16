@@ -1,5 +1,5 @@
 function initGame() {
-    alert("Loading","Loading your game please wait.", "load");
+    alert("Loading", "Loading your game please wait.", "load");
     let form = document.getElementById("form1");
     let cols = parseInt(form.elements[0].value);
     let rows = parseInt(form.elements[1].value);
@@ -40,7 +40,7 @@ function alert(title, s, alertType) {
             e.style.backgroundColor = "#f3bb00";
             break;
         case "load":
-            head.innerHTML = "<img src='loading.svg' style='height: 1.3em;'>";
+            head.innerHTML = " <img src='img\loading.svg' style='height: 1.3em;'>";
             e.style.backgroundColor = "#105789";
             break;
         default:
